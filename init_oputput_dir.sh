@@ -26,5 +26,5 @@ else
    echo "Configuration file $CONFIG_DIR/$CONFIG_FILE_NAME was initialized."
 fi
 
-
+echo "Folder docelowy certyfikatów $CN." > "$OUTPUT_DIR/README.txt"
 
