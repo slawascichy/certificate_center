@@ -49,6 +49,7 @@ openssl pkcs12 -export\
  -out $OUTPUT_DIR/certyfikat.p12\
  -inkey $OUTPUT_DIR/server-key.pem\
  -in $OUTPUT_DIR/server-cert.pem\
+ -name "$CN"\
  -certfile $CA_DIR/$CA_CERT_FILE
 
 $TAR_CMD -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
