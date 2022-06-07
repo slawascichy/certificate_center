@@ -18,6 +18,13 @@ echo "Folder $OUTPUT_DIR was created."
 CONFIG_FILE_NAME="$OUTPUT_CN_DIR"
 CONFIG_FILE_NAME+=_openssl.cnf
 
-cp $MAIN_CONF $CONFIG_DIR/$CONFIG_FILE_NAME
-echo "Configuration file $CONFIG_DIR/$CONFIG_FILE_NAME was initialized."
+if test -f "$CONFIG_DIR/$CONFIG_FILE_NAME"; then
+   # Ktoś już przygotował indywidualny plik konfiguracyjny 
+   echo "Custom config file $CONFIG_DIR/$CONFIG_FILE_NAME exists."
+else
+   cp $MAIN_CONF $CONFIG_DIR/$CONFIG_FILE_NAME
+   echo "Configuration file $CONFIG_DIR/$CONFIG_FILE_NAME was initialized."
+fi
+
+
 

@@ -41,7 +41,7 @@ openssl req\
 
 echo "Start certificate generation..."
 openssl ca\
- -config $OPENSSL_CA_CONF\
+ -config $MAIN_CONF\
  -in $OUTPUT_DIR/server-req.pem\
  -days $DAYS\
  -out $OUTPUT_DIR/server-cert.pem
@@ -53,5 +53,5 @@ openssl pkcs12 -export\
  -in $OUTPUT_DIR/server-cert.pem\
  -certfile $CA_DIR/$CA_CERT_FILE
 
-gtar -czvf $TARGET_DIR/$CN-certs.tar.gz $OUTPUT_DIR/*.p??
-echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$CN-certs.tar.gz"
+gtar -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
+echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz"

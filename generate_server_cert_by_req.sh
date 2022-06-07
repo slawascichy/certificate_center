@@ -19,10 +19,10 @@ export OUTPUT_DIR
 
 echo "Start certificate generation..."
 openssl ca\
- -config $OPENSSL_CA_CONF\
+ -config $MAIN_CONF\
  -in $OUTPUT_DIR/custom-req.pem\
  -days $DAYS\
  -out $OUTPUT_DIR/server-cert.pem
 
-gtar -czvf $TARGET_DIR/$CN-certs.tar.gz $OUTPUT_DIR/*.p??
-echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$CN-certs.tar.gz"
+gtar -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
+echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz"
