@@ -1,1 +1,1 @@
-Folder, do którego wstawiane sa wygenerowane certyfikaty.
+Folder, do którego wstawiane są pliki wygenerowanych certyfikatów.
