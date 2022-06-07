@@ -24,5 +24,5 @@ openssl ca\
  -days $DAYS\
  -out $OUTPUT_DIR/server-cert.pem
 
-gtar -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
+$TAR_CMD -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
 echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz"

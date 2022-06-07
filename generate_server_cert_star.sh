@@ -53,5 +53,5 @@ openssl pkcs12 -export\
  -in $OUTPUT_DIR/server-cert.pem\
  -certfile $CA_DIR/$CA_CERT_FILE
 
-gtar -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
+$TAR_CMD -czvf $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz $OUTPUT_DIR/*.p??
 echo "SUCCESS! Certs are available in archive file $TARGET_DIR/$OUTPUT_CN_DIR-certs.tar.gz"
