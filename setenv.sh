@@ -3,6 +3,15 @@
 # Skrypt ładujący ogólne paramtery generacji jako zmienne środowiskowe.
 ##################################
 
+# ----------------------------------
+# Archiwizator - nie wszędzie jest gtar
+# Konfiguracja dla Linux:
+#TAR_CMD=gtar
+# Konfiguracja dla Cygwin:
+TAR_CMD=tar
+export TAR_CMD
+# ----------------------------------
+
 # Katalog z certyfikatem organizacji podpisującej
 CA_DIR=./cacerts
 CONFIG_DIR=./config
@@ -20,6 +29,6 @@ export KEY_SIZE
 
 # Główny plik konfiguracyjny. Nazwanu z prefiksem 001 aby był na początku.
 MAIN_CONF=$CONFIG_DIR/001_main_openssl.cnf
-CA_CERT_FILE=scisoftware_ca_cert.pem
+CA_CERT_FILE=scisoftware_ca_cert.crt
 CA_KEY_FILE=scisoftware_ca_key.pem
 export MAIN_CONF CA_CERT_FILE CA_KEY_FILE
