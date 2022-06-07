@@ -1,10 +1,6 @@
 # Serwerowe skrypty pomocnicze
 Tutaj znajdziemy szereg skryptów, które wesprą nasze działania na serwerach, na których konfigurujemy usługi SSL
 
-------------------------------------------------------
-autor: Sławomir Cichy <slawas@scisoftware.pl>
--------------------------------------------------------------
-
 ## Opis skryptów i plików
 
 ### ./websphere_refresh_cert.sh
