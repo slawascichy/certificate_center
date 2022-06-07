@@ -23,7 +23,3 @@ MAIN_CONF=$CONFIG_DIR/001_main_openssl.cnf
 CA_CERT_FILE=scisoftware_ca_cert.pem
 CA_KEY_FILE=scisoftware_ca_key.pem
 export MAIN_CONF CA_CERT_FILE CA_KEY_FILE
-
-
-
-

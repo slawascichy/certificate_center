@@ -7,7 +7,7 @@
 # umieścić plik z żądaniem. Plik nalezy nazwać custom-req.pem.
 ##################################
 
-./setenv.sh
+. ./setenv.sh
 
 # Nazwę serwera przyjmujemy jako argument. 
 CN=$1

@@ -3,7 +3,7 @@
 # Skrypt generujący certyfikat uwierzytalniający serwer
 ##################################
 
-./setenv.sh
+. ./setenv.sh
 
 # Nazwę serwera przyjmujemy jako argument. 
 CN=$1
