@@ -1,7 +1,7 @@
 # Centrum Certyfikacyjne
 
 Centrum zarządzania certyfikatami SSL oparte o openssl oraz skrtypy bash.
-Zbiór skryptów wpsiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie zarządzac certyfikatami SSL naszej wewnetrznej infrastruktury.
+Zbiór skryptów wpsiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie, bezkosztowo, zarządzac certyfikatami SSL naszej wewnetrznej infrastruktury. Projekt [Let's Encrypt](https://letsencrypt.org/) pozwala na obsługę certyfikacji naszych serwerów jednakże jego zastosowanie ma takie ograniczenie, że nasze usługi muszą być wystawione na świat - proces walidacji serwera nie pozwala na korzystanie z certyfikatów na serwerach, które nie mają wyjścia na świat.
 
 ## Opis skryptów i plików
 
@@ -69,15 +69,15 @@ Koniec instalacji.
 ## Generowanie certyfikatu dla usługi
 
 Wymagania co do jakości certyfikatów się zwiększają i przez to wymagana jest indywidualna konfiguracja open SSL dla każdego wystawianego certyfikatu i stąd konieczność dodatkowej pracy manualnej. Poszczególne kroki generacji certyfikatu:
-- Przechodzimy do katalogu, w którym zainstalowaliśmy skrypty generacji certyfikatów.
-- Tworzymy (o ile już nie istnieje katalog) docelowy, w którym generowane będą poszczególne składowe certyfikatu.
+1. Przechodzimy do katalogu, w którym zainstalowaliśmy skrypty generacji certyfikatów.
+2. Tworzymy (o ile już nie istnieje katalog) docelowy, w którym generowane będą poszczególne składowe certyfikatu.
 ```bash
 # Przygotuj nazwę katalogu w zmiennej środowiskowej. Zmienna $CN reprezentuje pełną nazwę 
 # serwera dla którego ma być wygenerowany certyfikat np. *wiki.example.com*
 set CN=wiki.example.com
 ./init_oputput_dir.sh $CN
 ```
-- Podczas inicjalizacji w katalogu `./target` zostanie utworzony odpowiedni katalog o nazwie `$CN`, a w katalogu `./config` powinien pojawić się plik z konfiguracją o nazwie `$CN_openssl.cnf` gdzie `$CN` reprezentuje pełną nazwę serwera dla którego ma być wygenerowany certyfikat np. *wiki.example.com_openssl.cnf*. Ta dedykowana powinna być teraz dostosowana do potrzeb serwera. Zmieniamy sekcję `[alt_names]` tak aby ustawić wymagane dla certyfikatu alternatywne nazwy, np.:
+3. Podczas inicjalizacji w katalogu `./target` zostanie utworzony odpowiedni katalog o nazwie `$CN`, a w katalogu `./config` powinien pojawić się plik z konfiguracją o nazwie `$CN_openssl.cnf` gdzie `$CN` reprezentuje pełną nazwę serwera dla którego ma być wygenerowany certyfikat np. *wiki.example.com_openssl.cnf*. Ta dedykowana powinna być teraz dostosowana do potrzeb serwera. Zmieniamy sekcję `[alt_names]` tak aby ustawić wymagane dla certyfikatu alternatywne nazwy, np.:
 ```text
 [alt_names]
 DNS.1 = wiki.example.com
@@ -85,8 +85,35 @@ DNS.2 = www.wiki.example.com
 DNS.3 = ipv4.wiki.example.com
 DNS.4 = ipv6.wiki.example.com 
 ```
-- Generujemy certyfikat za pomocą polecenia:
+4. Generujemy certyfikat za pomocą polecenia:
 ```bash
 ./generate_server_cert.sh $CN    
 ```
-    
+Generacja certyfikatu jest interaktywna, tzn. że trzeba będzie odpowiedzieć na pytania:
+```
+Certificate is to be certified until Jun  6 13:52:54 2025 GMT (1095 days)
+Sign the certificate? [y/n]:
+```
+Należy odpowiedzieć "y"
+```
+1 out of 1 certificate requests certified, commit? [y/n]
+```
+Należy odpowiedzieć "y"
+```
+Enter Export Password:
+```
+Należy wprowadzić hasło generowanego archiwum PKCS12. Zapamiętaj je by później przekazać odpowiedniej osobie instalującej certyfikaty na serwerze docelowym.
+
+W efekcie końcowym utworzone zostanie archiwum, które należy przekazać osobie instalującej certyfikaty na serwerze docelowym.
+```
+wiki.example.com/4A.pem
+wiki.example.com/certyfikat.p12
+wiki.example.com/server-cert.pem
+wiki.example.com/server-key.pem
+wiki.example.com/server-req.pem
+SUCCESS! Certs are available in archive file wiki.ibpm.pro-certs.tar.gz
+```
+
+Informacje o wygenerowanym certyfikacie zarejestrowane zostaną w bazie certyfikatów, w pliku `./database/index.txt`.
+
+
