@@ -15,6 +15,9 @@ export OUTPUT_DIR
 mkdir -p $OUTPUT_DIR
 echo "Folder $OUTPUT_DIR was created."
 
-cp $MAIN_CONF $CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf
-echo "Configuration file $CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf was initialized."
+CONFIG_FILE_NAME="$OUTPUT_CN_DIR"
+CONFIG_FILE_NAME+=_openssl.cnf
+
+cp $MAIN_CONF $CONFIG_DIR/$CONFIG_FILE_NAME
+echo "Configuration file $CONFIG_DIR/$CONFIG_FILE_NAME was initialized."
 

@@ -20,11 +20,13 @@ mkdir -p $OUTPUT_DIR
 # rm -rf $OUTPUT_DIR/*.p*
 
 OPENSSL_CONF=$MAIN_CONF
+CONFIG_FILE_NAME="$OUTPUT_CN_DIR"
+CONFIG_FILE_NAME+=_openssl.cnf
 
-if test -f "$CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf"; then
+if test -f "$CONFIG_DIR/$CONFIG_FILE_NAME"; then
    # Ktoś przygotował indywidualny plik konfiguracyjny 
-   echo "Use custom config file $CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf"
-   OPENSSL_CONF=$CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf
+   echo "Use custom config file $CONFIG_DIR/$CONFIG_FILE_NAME"
+   OPENSSL_CONF=$CONFIG_DIR/$CONFIG_FILE_NAME
 fi
 
 
