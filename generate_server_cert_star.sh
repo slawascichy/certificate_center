@@ -21,10 +21,10 @@ mkdir -p $OUTPUT_DIR
 
 OPENSSL_CONF=$MAIN_CONF
 
-if test -f "$CONFIG_DIR/$CN_openssl.cnf"; then
+if test -f "$CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf"; then
    # Ktoś przygotował indywidualny plik konfiguracyjny 
-   echo "Use custom config file $CONFIG_DIR/$CN_openssl.cnf"
-   OPENSSL_CONF=$CONFIG_DIR/{$OUTPUT_CN_DIR}_openssl.cnf
+   echo "Use custom config file $CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf"
+   OPENSSL_CONF=$CONFIG_DIR/$OUTPUT_CN_DIR_openssl.cnf
 fi
 
 
