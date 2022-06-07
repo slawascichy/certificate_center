@@ -110,7 +110,7 @@ basicConstraints         = CA:true
 nsCertType               = sslCA, emailCA
 subjectAltName           = @alt_names
 issuerAltName            = issuer:copy
-crlDistributionPoints    = URI:"http://ibpm.pro/CRL/servers_cert.crl"
+crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/servers_cert.crl"
 
 
 [ crl_ext ]
