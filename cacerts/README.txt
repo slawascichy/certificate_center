@@ -1,0 +1,1 @@
+Folder, w którym przechowywane są certyfikaty CA oraz ich klucze.
