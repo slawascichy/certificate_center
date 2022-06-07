@@ -22,18 +22,34 @@ Poniżej opisano kilka metod działania na certyfikatach SSL.
 Niektóre z usług potrzebują by klucz prywatny usługi wraz z jej certyfikatem był umieszczony w jednym archiwum PKCS12.
 Archiwum takie tworzymy za pomocą polecenia:
 ```bash
-openssl pkcs12 -export -in <plik_certyfikatu_serwera> -inkey <klucz_prywatny_serwera> -out <nazwa_archiwum>.p12 -name "<nazwa>" -CAfile <plik_certyfikatu_CA> -caname "Sci Software Private Certification Authority, domain PL"
+openssl pkcs12 -export\
+ -in <plik_certyfikatu_serwera>\
+ -name "<nazwa>"\
+ -inkey <klucz_prywatny_serwera>\
+ -out <nazwa_pliku_archiwum_PKCS12>\
+ -CAfile <plik_certyfikatu_CA>\
+ -caname "Sci Software Private Certification Authority, domain PL"
 ```
 Tak stworzone archiwum można umieścić w plikach, w których przechowywane są klucze i zaufane certyfikaty za pomocą narzędzia `keytool`:
 
 - Załadowanie certyfikatu CA:
 ```bash
-keytool -import -alias 'IBPMPRO.CA' -file <plik_certyfikatu_CA> -keystore <plik_przechowywania_kluczy> -storetype JCEKS -storepass ******
+keytool -import -alias 'scisoftware_ca'\
+ -file <plik_certyfikatu_CA>\
+ -keystore <plik_przechowywania_kluczy>\
+ -storetype JCEKS -storepass ******
 ```
 
 - Załadowanie archiwum PKCS12:
 ```bash
-keytool -importkeystore -deststoretype JCEKS -deststorepass ****** -destkeypass ****** -destkeystore <plik_przechowywania_kluczy> -srckeystore <nazwa_archiwum>.p12 -srcstoretype PKCS12 -srcstorepass ***** -alias "<nazwa>"
+keytool -importkeystore -deststoretype JCEKS\
+ -deststorepass ******\
+ -destkeypass ******\
+ -destkeystore <plik_przechowywania_kluczy>\
+ -srckeystore <nazwa_pliku_archiwum_PKCS12>\
+ -srcstoretype PKCS12\
+ -srcstorepass *****\
+ -alias "<nazwa>"
 ```
 
 ### OpenLdap - Ładowanie certyfikatów
@@ -50,20 +66,20 @@ slapcat -b cn=config -a "(&(|(cn=config)(olcDatabase={1}hdb))(olcTLSCertificateF
 ```
 ![](doc-resources/02_openssl_alias_info.png)
 - Jeżeli nazwy są różne, to musimy się zdecydować na jedną z opcji postępowania:
--- Ustawiamy odpowiedni alias w archiwum PKCS12
--- Ustawiamy odpowiedni alias w konfiguracji OpenLdap
+  - Ustawiamy odpowiedni alias w archiwum PKCS12
+  - Ustawiamy odpowiedni alias w konfiguracji OpenLdap
 - Gdy się zdecydujemy na zmianę konfiguracji OpenLdap to musimy:
--- Przygotować plik *.ldif, za pośrednictwem którego wydamy polecenie zmiany:
-```ldif
-dn: cn=config
-changetype: modify
-replace: olcTLSCertificateFile
-olcTLSCertificateFile: "<nazwa_aliasu_w_archiwum_PKCS12>"
-```
--- Wydać polecenie zapytanie do LDAP:
-```bash
-ldapmodify -Y EXTERNAL  -H ldapi:/// -f <nazwa_pliku_ldif>
-```
+  - Przygotować plik *.ldif, za pośrednictwem którego wydamy polecenie zmiany:
+    ```ldif
+    dn: cn=config
+    changetype: modify
+    replace: olcTLSCertificateFile
+    olcTLSCertificateFile: "<nazwa_aliasu_w_archiwum_PKCS12>"
+    ```
+  - Wydać polecenie zapytanie do LDAP: 
+    ```bash
+    ldapmodify -Y EXTERNAL  -H ldapi:/// -f <nazwa_pliku_ldif>
+    ```
 - Jak już wszystko będzie spójne wydajemy polecenie ładowania archiwum PKCS12 do bazy certyfikatów OpenLDAP:
 ```bash
 pk12util -i <nazwa_pliku_z_archiwum_PKCS12> -d /etc/openldap/certs
