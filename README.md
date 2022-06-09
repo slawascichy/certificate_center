@@ -1,7 +1,7 @@
 # Centrum Certyfikacyjne
 
-Centrum zarządzania certyfikatami SSL oparte o openssl oraz skrtypy bash.
-Zbiór skryptów wpsiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie, bezkosztowo, zarządzac certyfikatami SSL naszej wewnetrznej infrastruktury. Projekt [Let's Encrypt](https://letsencrypt.org/) pozwala na darmową obsługę certyfikacji naszych serwerów, lecz jego zastosowanie ma ograniczenie: **nasze usługi muszą być wystawione na świat** - proces walidacji serwera nie pozwala na korzystanie z certyfikatów na serwerach, które nie mają wyjścia na świat.
+Centrum zarządzania certyfikatami SSL oparte o openssl oraz skrypty bash.
+Zbiór skryptów wspiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie, bezkosztowo, zarządzać certyfikatami SSL naszej wewnętrznej infrastruktury. Projekt [Let's Encrypt](https://letsencrypt.org/) pozwala na darmową obsługę certyfikacji naszych serwerów, lecz jego zastosowanie ma ograniczenie: **nasze usługi muszą być wystawione na świat** - proces walidacji serwera nie pozwala na korzystanie z certyfikatów na serwerach, które nie mają wyjścia na świat.
 
 ## Opis skryptów i plików
 
@@ -57,10 +57,10 @@ Parametry uzupełniania listy wygenerowanych certyfikatów.
 Aby móc generować klucze wymagane jest oprogramowanie [openSSL](https://wiki.ibpm.pro/index.php/OpenSSL).
 Oprogramowanie sprawdzone na systemie operacyjnym CentOS oraz Windows przy użyciu nakładki Cygwin.
 
-Poszczególne kroki instalayjne:
+Poszczególne kroki instalacyjne:
 - Umieść pliki projektu w utworzonym przez ciebie katalogu np. `/opt/security`.
 - Zmień przykładową konfigurację pliku [./config/001_main_openssl.cnf](/slawascichy/certificate_center/blob/main/config/001_main_openssl.cnf) tak aby spełniały one twoje wymagania.
-- Zmien parametry środowiska w skrypcie `setenv.sh`.
+- Zmień parametry środowiska w skrypcie `setenv.sh`.
 - Zmień wartość parametru CN w skrypcie `generate_ca.sh`.
 - Wygeneruj swój pierwszy certyfikat CA za pomocą skryptu `generate_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów serwerowych. Odtąd wystaczy, że twoi współpracownicy będą mieli zainstalowany na komputerze ten certyfikat CA w magazynie "Zaufanych głównych urzędów certyfikacji" , a ich przeglądarki będą tolerować/ufać serwerom, które będą obsługiwane przez twoje Centrum Certyfikacyjne.
 
