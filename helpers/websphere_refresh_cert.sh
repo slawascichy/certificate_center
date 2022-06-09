@@ -20,7 +20,7 @@ export JAVA_HOME=$WAS_HOME/java
 export CONFIG_ROOT=$WEBSPHERE_PROFILES/DmgrProfile/config
 
 #------------------------------------
-HOST_NAME=pw-bpm86-001
+HOST_NAME=pw-bpm86-001.ibpm.pro
 # Alias certyfikatu, pod taka nazwą certyfikaty są przechowywane 
 # w magazynach WebSphere
 CERT_ALIAS=pw-bpm86-001
@@ -50,7 +50,7 @@ stop()
 # Odświeżenie certyfikatu Let's Encrypt
 sudo certbot renew
 # Generuję certyfikat na podstawie danych z Let's Encrypt
-sudo openssl pkcs12 -export -out server.p12 -in /etc/letsencrypt/live/pw-bpm86-001.ibpm.pro/fullchain.pem -name $CERT_ALIAS -inkey /etc/letsencrypt/live/pw-bpm86-001.ibpm.pro/privkey.pem -password pass:WebAS
+sudo openssl pkcs12 -export -out server.p12 -in /etc/letsencrypt/live/$HOST_NAME/fullchain.pem -name $CERT_ALIAS -inkey /etc/letsencrypt/live/$HOST_NAME/privkey.pem -password pass:WebAS
 sudo chown bpmadmin:bpmadmins server.p12
 
 # Zatrzymuję system (zobacz deklaracja funkcji)
