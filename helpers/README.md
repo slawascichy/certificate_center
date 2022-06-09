@@ -3,13 +3,19 @@ Tutaj znajdziemy szereg skryptów, które wesprą nasze działania na serwerach,
 
 ## Opis skryptów i plików
 
-### ./websphere_refresh_cert.sh
+<details><summary>Opis zawartych w katalogu skryptów pomocniczych, które wesprą nas w działaniach administracji serwerami.</summary>
+  <p>
+
+   ### ./websphere_refresh_cert.sh
 Przykładowa implementacja skryptu realizującego zadania:
 1. Odświeżenie certyfikatów  [Let's Encrypt](https://letsencrypt.org/) - polecenie `certbot`
 2. Załadowanie odświeżonych certyfikatów do magazynów serwera aplikacji WebSphere.
 
-### ./create_pkcs12_from_lets.sh
+   ### ./create_pkcs12_from_lets.sh
 Przykładowa implementacja skryptu pozwalającego na utworzenie magazynu PKCS12 z plików certyfikatów pozyskanych w usłudze [Let's Encrypt](https://letsencrypt.org/).
+Zobacz również opis, który znajdziesz opisie **Generowanie i obsługa magazynu PKCS12**.
+   </p>
+</details>
 
 ## Sposoby na ładowanie certyfikatów
 Poniżej opisano kilka metod działania na certyfikatach SSL.
