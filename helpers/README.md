@@ -57,6 +57,34 @@ keytool -importkeystore -deststoretype JCEKS\
 ### OpenLdap - Ładowanie certyfikatów
 W pierwszej kolejności powinniśmy mieć dostęp do magazynu (archiwum) PKCS12. Następnie realizujemy kroki:
 
+#### Przygotowanie bazy certyfikatów
+
+Sprawdź czy istnieje baza certyfikatów. Domyślna znajduje się w katalogu `/etc/openldap/certs`.
+Jeżeli jej nie ma, lub jest trefna, to utwórz ja na nowo za pomocą poleceń (jako `root`):
+```bash
+mkdir -p /etc/openldap/certs
+# oczyszczenie katalogu bazy danych 
+rm -rf /etc/openldap/certs/*
+# Wymyśl skomplikowane hasło dostępu do bazy np. mcteNdkuij0QV3GYPqma7rvsLc9IOfs7i9
+# Wrzuć je do pliku:
+echo "mcteNdkuij0QV3GYPqma7rvsLc9IOfs7i9" > /etc/openldap/certs/password
+# Utwórz bazę danych certyfikatów.
+# Gdy zostaniesz poproszony o hasło to użyj tego, które przed chwilą wymyśliłeś:
+certutil -N -d /etc/openldap/certs
+# Sprawdź czy wszystko gra:
+# Lista certyfikatów (teraz pewnie pusta)
+certutil -L -d /etc/openldap/certs
+# Lista kluczy (teraz pewnie pusta)
+certutil -K -d /etc/openldap/certs -f /etc/openldap/certs/password
+# ustaw uprawnienia:
+chmod a+r /etc/openldap/certs/*.db
+chmod a-r /etc/openldap/certs/password
+chmod u-r /etc/openldap/certs/password
+```
+
+#### Ładowanie certyfikatu do bazy
+
+Gdy już wiesz, że baza certyfikatów jest OK, to wykonaj następujące kroki:
 - Sprawdzamy nazwę aliasu certyfikatu w magazynie poleceniem:
 ```bash
 openssl pkcs12 -nokeys -info -in <nazwa_pliku_z_archiwum_PKCS12>
