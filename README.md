@@ -11,11 +11,21 @@ Zbiór skryptów wspiera pracę i rejestrację certyfikatów podpisanych samodzi
   ### ./setenv.sh
 Skrypt pozwalający na ogólną konfigurację twojego Centrum Certyfikacyjnego.
 
-  ### ./generate_ca.sh
-Skrypt generacji klucza oraz certyfikatu CA - certyfikatu, którym będą podpisywane wszystkie wystawiane przez ciebie certyfikaty. Ustaw swoją konfigurację w pliku [./config/001_main_openssl.cnf](/slawascichy/certificate_center/blob/main/config/001_main_openssl.cnf) tak aby spełniały one twoje wymagania aby certyfikat CA reprezentował twoją organizację. Przykład:
+  ### ./generate_root_ca.sh
+Skrypt generacji klucza oraz certyfikatu "ROOT" CA - certyfikatu, którym będą podpisywane wszystkie certyfikaty pośrednie. Poprzez jego edycję zmień parametry skryptu w celu ustawienia CN oraz nazwy docelowej certyfikatu - spokojnie, robisz to tylko raz, bo wygenerowane CA trzeba będzie zmienić za 20 lat:
+```bash
+#CN=$1
+#FRENDLY_NAME=$2
+CN="Sci Software Root CA"
+FRENDLY_NAME="SciSoftwareRootCA"
+export CN FRENDLY_NAME  
+
+DAYS=7300 #20 lata
+export DAYS
+```
+Ustaw swoją konfigurację w pliku [./config/002_root_ca_openssl](/slawascichy/certificate_center/blob/main/config/002_root_ca_openssl.cnf) tak aby spełniała ona twoje wymagania i aby certyfikat CA reprezentował twoją organizację. Przykład:
 ```
 [ req_distinguished_name ]
-emailAddress             = info@scisoftware.pl
 countryName              = PL
 stateOrProvinceName      = Pomorskie
 localityName             = Bojano
@@ -24,10 +34,60 @@ localityName             = Bojano
 commonName               = ${ENV::CN}
 0.DC                     = scisoftware
 1.DC                     = pl
+    
+#...
+[alt_names]
+DNS.1 = "Sci Software Sławomir Cichy, https://scisoftware.pl"
+```
+  ### ./generate_intermediate_ca.sh
+Skrypt generacji klucza oraz certyfikatu pośredniego CA - certyfikatu, którym będą podpisywane wszystkie wystawiane przez ciebie certyfikaty. Poprzez jego edycję zmień parametry skryptu w celu ustawienia CN oraz nazwy docelowej certyfikatu. Wygenerowane CA trzeba będzie zmienić za 10 lat:
+```bash
+#CN=$1
+#FRENDLY_NAME=$2
+CN="Sci Software Intermediate CA"
+FRENDLY_NAME="SciSoftwareIntermediateCA"
+export CN FRENDLY_NAME 
+
+DAYS=3650 #10 lat
+export DAYS
+```    
+Ustaw swoją konfigurację w pliku [./config/003_intermediate_ca_openssl.cnf](/slawascichy/certificate_center/blob/main/config/003_intermediate_ca_openssl.cnf) tak aby spełniała ona twoje wymagania i aby certyfikat CA reprezentował twoją organizację. Przykład:
+```
+[ req_distinguished_name ]
+countryName              = PL
+stateOrProvinceName      = Pomorskie
+localityName             = Bojano
+0.organizationName       = Sci Software
+0.organizationalUnitName = IT o/Bojano
+commonName               = ${ENV::CN}
+
+#...
+[alt_names]
+DNS.1 = "Sci Software Sławomir Cichy, https://scisoftware.pl"
 ```
   ### ./init_oputput_dir.sh
-Skrypt pozwalający nam na zainicjalizowanie katalogu, w którym składowane będą certyfikaty danej usługi/serwera.
-    
+Skrypt pozwalający nam na zainicjalizowanie katalogu, w którym składowane będą certyfikaty danej usługi/serwera. W katalogu zainicjalizowana zostanie konfiguracja oparta o plik [./config/001_main_openssl.cnf](/slawascichy/certificate_center/blob/main/config/001_main_openssl.cnf), dlatego ustaw w nim swoją konfigurację tak aby spełniała ona twoje wymagania i aby certyfikat CA reprezentował twoją organizację:
+```
+[ req_distinguished_name ]
+countryName              = PL
+stateOrProvinceName      = Pomorskie
+localityName             = Bojano
+0.organizationName       = Sci Software
+0.organizationalUnitName = IT o/Bojano
+commonName               = ${ENV::CN}
+0.DC                     = scisoftware
+1.DC                     = pl
+
+#...
+[alt_names]
+DNS.1 = scisoftware.pl
+DNS.2 = *.scisoftware.pl
+DNS.3 = hgdb.org
+DNS.4 = *.hgdb.org
+DNS.5 = hgdb.io
+DNS.6 = *.hgdb.io
+```
+
   ### ./generate_server_cert.sh
 Skrypt do generacji certyfikatu serwera. Skrypt generuje certyfikat request'u, klucz prywatny oraz sam certyfikat w katalogu o nazwie `./target/<nazwa_hosta_uslugi>`.
 
@@ -40,6 +100,12 @@ Skryp pozwalający na generację certyfikatu na podstawie dostarczonego pliku re
   ### ./config/001_main_openssl.cnf
 Plik konfiguracji openSSL. Są tam zawarte główne dane o nas, jako zaufanym urzędzie certyfikacji (CA)
 
+  ### ./config/002_root_ca_openssl.cnf
+Plik konfiguracji openSSL. Są tam zawarte główne dane o nas, jako zaufanym urzędzie certyfikacji (CA). Wspiera generacje głównego ("ROOT") certyfikatu CA.
+
+  ### ./config/003_intermediate_ca_openssl
+Plik konfiguracji openSSL. Są tam zawarte główne dane o nas, jako zaufanym urzędzie certyfikacji (CA). Wspiera generacje pośredniego certyfikatu CA.
+  
   ### ./database/serial
 Plik przechowujący kolejny numer wygenerowanego certyfikatu (sekwencja).
 
@@ -59,10 +125,17 @@ Oprogramowanie sprawdzone na systemie operacyjnym CentOS oraz Windows przy użyc
 
 Poszczególne kroki instalacyjne:
 - Umieść pliki projektu w utworzonym przez ciebie katalogu np. `/opt/security`.
-- Zmień przykładową konfigurację pliku [./config/001_main_openssl.cnf](/slawascichy/certificate_center/blob/main/config/001_main_openssl.cnf) tak aby spełniały one twoje wymagania.
+- Zmień przykładową konfigurację pliku [./config/001_main_openssl.cnf](/slawascichy/certificate_center/blob/main/config/001_main_openssl.cnf) tak aby spełniał one twoje wymagania.
+- Zmień przykładową konfigurację pliku [./config/002_root_ca_openssl.cnf](/slawascichy/certificate_center/blob/main/config/002_root_ca_openssl.cnf) tak aby spełniał one twoje wymagania. Zobacz opis skryptu `./generate_root_ca.sh`.
+- Zmień przykładową konfigurację pliku [./config/003_intermediate_ca_openssl.cnf](/slawascichy/certificate_center/blob/main/config/003_intermediate_ca_openssl.cnf) tak aby spełniał one twoje wymagania. Zobacz opis skryptu `./generate_intermediate_ca.sh`.
 - Zmień parametry środowiska w skrypcie `setenv.sh`.
-- Zmień wartość parametru CN w skrypcie `generate_ca.sh`.
-- Wygeneruj swój pierwszy certyfikat CA za pomocą skryptu `generate_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów serwerowych. Odtąd wystaczy, że twoi współpracownicy będą mieli zainstalowany na komputerze ten certyfikat CA w magazynie "Zaufanych głównych urzędów certyfikacji" , a ich przeglądarki będą tolerować/ufać serwerom, które będą obsługiwane przez twoje Centrum Certyfikacyjne.
+- Zmień wartość parametru CN oraz FRENDLY_NAME w skrypcie `generate_root_ca.sh`.
+- Zmień wartość parametru CN oraz FRENDLY_NAME w skrypcie `generate_intermediate_ca.sh`.
+- Wygeneruj swój pierwszy certyfikat ROOT CA za pomocą skryptu `generate_root_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów pośrednich.
+- Wygeneruj swój pierwszy certyfikat pośredni CA za pomocą skryptu `generate_intermediate_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów twoich serwerów. 
+    
+Przekaż wygenerowane certyfikaty, ROOT CA oraz certyfikat pośredni, współpracownikom. Jeżeli będą oni mieli je zainstalowane na komputerze w magazynie "Zaufanych głównych urzędów certyfikacji", ich przeglądarki będą tolerować/ufać serwerom, które będą obsługiwane przez twoje Centrum Certyfikacyjne.
+![](helpers/doc-resources/03_openssl_certmgr.png)    
 
 Koniec instalacji.
 
@@ -106,14 +179,8 @@ Należy wprowadzić hasło generowanego archiwum PKCS12. Zapamiętaj je by póź
 
 W efekcie końcowym utworzone zostanie archiwum, które należy przekazać osobie instalującej certyfikaty na serwerze docelowym.
 ```
-wiki.example.com/4A.pem
-wiki.example.com/certyfikat.p12
-wiki.example.com/server-cert.pem
-wiki.example.com/server-key.pem
-wiki.example.com/server-req.pem
-SUCCESS! Certs are available in archive file wiki.ibpm.pro-certs.tar.gz
+SUCCESS! Certs are available in archive file wiki.ibpm.pro-certs.tar
 ```
 
 Informacje o wygenerowanym certyfikacie zarejestrowane zostaną w bazie certyfikatów, w pliku `./database/index.txt`.
-
 
