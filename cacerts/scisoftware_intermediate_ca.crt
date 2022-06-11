@@ -1,0 +1,90 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=PL, ST=Pomorskie, L=Bojano, O=Sci Software, OU=IT o/Bojano, CN=Sci Software Root CA, DC=scisoftware, DC=pl
+        Validity
+            Not Before: Jun 11 14:39:49 2022 GMT
+            Not After : Jun  8 14:39:49 2032 GMT
+        Subject: C=PL, ST=Pomorskie, O=Sci Software, OU=IT o/Bojano, CN=Sci Software Intermediate CA
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:c7:e2:c9:09:4c:69:3b:e5:45:e0:9b:a7:16:54:
+                    0a:ce:f1:81:7d:f2:84:6b:d9:40:27:84:0b:8b:23:
+                    4d:b0:8e:29:4d:bb:3a:a3:20:00:f2:b1:04:95:be:
+                    7e:f0:61:61:4f:d5:a4:aa:1b:21:88:b9:c9:d5:da:
+                    84:79:80:2a:6a:35:ab:6e:e0:e6:db:6b:88:4f:4c:
+                    b0:3b:0d:cd:20:2e:f7:74:90:d8:59:b4:80:a8:cb:
+                    ba:49:ec:39:3a:e9:4e:80:cf:23:a6:99:23:d2:39:
+                    03:fc:d2:9e:02:0a:54:fc:47:aa:2a:d9:b2:5a:76:
+                    68:04:21:6e:e4:e0:32:1c:fe:68:a4:93:07:89:2c:
+                    08:f2:a6:f8:31:58:b8:16:1b:f6:83:af:c7:c8:23:
+                    b3:52:9f:e6:ee:ba:e4:c9:d5:63:8b:93:6e:eb:df:
+                    b4:5d:b9:d8:07:9f:fa:6a:63:81:fb:53:8d:ba:d8:
+                    13:d0:d8:d3:df:7c:04:9e:d7:d3:84:72:99:36:82:
+                    07:18:e8:eb:87:59:0a:4d:1a:64:e8:c4:e6:c2:e9:
+                    bc:60:2c:07:0a:91:60:60:c6:a7:0b:bb:53:e9:af:
+                    68:86:00:2e:48:16:bd:22:83:ec:1c:62:9b:3a:c3:
+                    0c:6f:85:76:bb:eb:bb:1a:6f:b9:48:71:46:2b:bd:
+                    16:1d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                D8:F3:11:21:C9:CD:52:DB:DD:B9:1E:14:45:2B:79:E5:21:25:D1:CC
+            X509v3 Authority Key Identifier: 
+                keyid:80:08:00:BD:2E:E2:8F:E7:C2:5C:74:26:26:22:48:20:BA:8A:2B:98
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:0
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign, CRL Sign
+            X509v3 Subject Alternative Name: 
+                DNS:Sci Software Sławomir Cichy, https://scisoftware.pl
+            X509v3 Issuer Alternative Name: 
+                DNS:Sci Software Sławomir Cichy, https://scisoftware.pl
+    Signature Algorithm: sha256WithRSAEncryption
+         69:eb:e0:dc:2e:9d:09:f7:ca:6b:e7:07:62:2b:f2:f0:ab:c1:
+         90:19:93:a3:fd:05:29:f7:fe:a2:84:41:3e:13:7c:da:3d:e3:
+         74:f5:ae:33:ef:68:c6:72:1d:47:56:a6:8a:b2:c6:00:f3:f7:
+         72:07:4a:59:92:8f:64:06:aa:e1:d4:25:c1:ec:19:6f:46:db:
+         56:66:b5:fb:96:bb:7e:89:4c:54:94:dc:a9:fb:9a:57:a9:ed:
+         7d:c7:2a:3b:ac:69:0a:fa:cf:be:35:e6:43:86:e9:d7:16:15:
+         29:59:bd:05:f5:36:3f:df:d2:76:ee:cc:38:62:79:24:95:6f:
+         85:f2:2e:73:14:9d:3f:fb:77:58:91:30:c4:e4:d6:06:f2:23:
+         74:fa:25:3d:80:fc:5e:f2:f4:8c:df:f8:df:f3:22:bd:10:16:
+         f9:71:3b:4d:26:97:7e:2a:82:3d:71:d7:99:48:9b:89:50:b8:
+         f7:55:fc:f6:0a:ef:f4:5e:6a:d9:f2:b1:b1:37:3d:a1:cd:ec:
+         c0:be:94:c8:3c:a8:25:84:58:9c:23:f0:7a:ae:be:f0:4d:0a:
+         60:ed:05:3e:5e:3c:5d:b7:30:33:12:c8:ef:97:8e:d4:ed:2c:
+         f8:82:40:6b:0c:75:d8:77:90:18:55:ee:78:24:91:97:6a:ed:
+         6f:c3:b8:c0
+-----BEGIN CERTIFICATE-----
+MIIEijCCA3KgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBrzELMAkGA1UEBhMCUEwx
+EjAQBgNVBAgMCVBvbW9yc2tpZTEPMA0GA1UEBwwGQm9qYW5vMRUwEwYDVQQKDAxT
+Y2kgU29mdHdhcmUxFDASBgNVBAsMC0lUIG8vQm9qYW5vMR0wGwYDVQQDDBRTY2kg
+U29mdHdhcmUgUm9vdCBDQTEbMBkGCgmSJomT8ixkARkWC3NjaXNvZnR3YXJlMRIw
+EAYKCZImiZPyLGQBGRYCcGwwHhcNMjIwNjExMTQzOTQ5WhcNMzIwNjA4MTQzOTQ5
+WjB1MQswCQYDVQQGEwJQTDESMBAGA1UECAwJUG9tb3Jza2llMRUwEwYDVQQKDAxT
+Y2kgU29mdHdhcmUxFDASBgNVBAsMC0lUIG8vQm9qYW5vMSUwIwYDVQQDDBxTY2kg
+U29mdHdhcmUgSW50ZXJtZWRpYXRlIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAx+LJCUxpO+VF4JunFlQKzvGBffKEa9lAJ4QLiyNNsI4pTbs6oyAA
+8rEElb5+8GFhT9WkqhshiLnJ1dqEeYAqajWrbuDm22uIT0ywOw3NIC73dJDYWbSA
+qMu6Sew5OulOgM8jppkj0jkD/NKeAgpU/EeqKtmyWnZoBCFu5OAyHP5opJMHiSwI
+8qb4MVi4Fhv2g6/HyCOzUp/m7rrkydVji5Nu69+0XbnYB5/6amOB+1ONutgT0NjT
+33wEntfThHKZNoIHGOjrh1kKTRpk6MTmwum8YCwHCpFgYManC7tT6a9ohgAuSBa9
+IoPsHGKbOsMMb4V2u+u7Gm+5SHFGK70WHQIDAQABo4HpMIHmMB0GA1UdDgQWBBTY
+8xEhyc1S2925HhRFK3nlISXRzDAfBgNVHSMEGDAWgBSACAC9LuKP58JcdCYmIkgg
+uoormDASBgNVHRMBAf8ECDAGAQH/AgEAMA4GA1UdDwEB/wQEAwIBhjA/BgNVHREE
+ODA2gjRTY2kgU29mdHdhcmUgU8WCYXdvbWlyIENpY2h5LCBodHRwczovL3NjaXNv
+ZnR3YXJlLnBsMD8GA1UdEgQ4MDaCNFNjaSBTb2Z0d2FyZSBTxYJhd29taXIgQ2lj
+aHksIGh0dHBzOi8vc2Npc29mdHdhcmUucGwwDQYJKoZIhvcNAQELBQADggEBAGnr
+4NwunQn3ymvnB2Ir8vCrwZAZk6P9BSn3/qKEQT4TfNo943T1rjPvaMZyHUdWpoqy
+xgDz93IHSlmSj2QGquHUJcHsGW9G21ZmtfuWu36JTFSU3Kn7mlep7X3HKjusaQr6
+z7415kOG6dcWFSlZvQX1Nj/f0nbuzDhieSSVb4XyLnMUnT/7d1iRMMTk1gbyI3T6
+JT2A/F7y9Izf+N/zIr0QFvlxO00ml34qgj1x15lIm4lQuPdV/PYK7/ReatnysbE3
+PaHN7MC+lMg8qCWEWJwj8HquvvBNCmDtBT5ePF23MDMSyO+XjtTtLPiCQGsMddh3
+kBhV7ngkkZdq7W/DuMA=
+-----END CERTIFICATE-----

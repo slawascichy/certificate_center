@@ -1,1 +1,1 @@
-V	250606164803Z		01	unknown	/C=PL/ST=Pomorskie/O=Sci Software/OU=IT o/Bojano/CN=auth-001.hgdb.org/emailAddress=info@scisoftware.pl
+V	320608143949Z		01	unknown	/C=PL/ST=Pomorskie/O=Sci Software/OU=IT o/Bojano/CN=Sci Software Intermediate CA

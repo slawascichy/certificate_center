@@ -78,6 +78,15 @@ keyUsage				= critical, digitalSignature, cRLSign, keyCertSign
 subjectAltName          = @alt_names
 issuerAltName           = issuer:copy
 
+[ v3_intermediate_ca ]
+# Extensions for a typical intermediate CA (`man x509v3_config`).
+subjectKeyIdentifier 	= hash
+authorityKeyIdentifier	= keyid:always,issuer
+basicConstraints		= critical, CA:true, pathlen:0
+keyUsage				= critical, digitalSignature, cRLSign, keyCertSign
+subjectAltName          = @alt_names
+issuerAltName           = issuer:copy
+
 [alt_names]
 DNS.1 = "Sci Software Sławomir Cichy, https://scisoftware.pl"
 
