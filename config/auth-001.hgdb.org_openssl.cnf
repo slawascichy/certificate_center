@@ -64,7 +64,6 @@ req_extensions           = v3_req
 x509_extensions          = srv_cert
 
 [ req_distinguished_name ]
-emailAddress             = info@scisoftware.pl
 countryName              = PL
 stateOrProvinceName      = Pomorskie
 localityName             = Bojano
