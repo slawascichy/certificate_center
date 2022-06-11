@@ -81,7 +81,7 @@ keyUsage                 = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName           = @alt_names
 nsCertType               = server
 extendedKeyUsage         = serverAuth, nsSGC, msSGC
-nsComment                = "Sci Software - Certificate, domain PL"
+nsComment                = "Sci Software - Certificate, OpenLdap Serwer"
 
 [ v3_ca ]
 basicConstraints         = CA:true
@@ -103,33 +103,7 @@ crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/servers_cert.crl"
 subjectAltName           = @alt_names
 nsCertType               = server
 extendedKeyUsage         = serverAuth, nsSGC, msSGC
-nsComment                = "Sci Software - Server Certificate, domain PL"
-keyUsage                 = digitalSignature, keyEncipherment
-
-# Konfiguracja podstawowa dla certyfikatów użytkowników
-[ usr_cert ]
-basicConstraints         = CA:FALSE
-subjectKeyIdentifier     = hash
-nsCertType               = sslCA, emailCA
-authorityKeyIdentifier   = keyid,issuer:always
-crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/users_cert.crl"
-subjectAltName           = @alt_names
-nsCertType               = client
-extendedKeyUsage         = clientAuth, emailProtection
-nsComment                = "Sci Software - User Certificate, domain PL"
-keyUsage                 = digitalSignature, keyEncipherment
-
-# Konfiguracja podstawowa dla certyfikatów klientów
-[ client_cert ]
-basicConstraints         = CA:FALSE
-subjectKeyIdentifier     = hash
-nsCertType               = sslCA, emailCA
-authorityKeyIdentifier   = keyid,issuer:always
-crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/users_cert.crl"
-subjectAltName           = @alt_names
-nsCertType               = client
-extendedKeyUsage         = clientAuth, emailProtection
-nsComment                = "Sci Software - Client Certificate, domain PL"
+nsComment                = "Sci Software - Certificate, OpenLdap Serwer"
 keyUsage                 = digitalSignature, keyEncipherment
 
 [alt_names]

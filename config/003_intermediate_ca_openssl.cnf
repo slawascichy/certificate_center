@@ -88,6 +88,18 @@ keyUsage				= critical, digitalSignature, cRLSign, keyCertSign
 subjectAltName          = @alt_names
 issuerAltName           = issuer:copy
 
+# Konfiguracja podstawowa dla certyfikatów serwerów
+[ srv_cert ]
+basicConstraints         = CA:false
+subjectKeyIdentifier     = hash
+nsCertType               = sslCA, emailCA
+authorityKeyIdentifier   = keyid,issuer:always
+crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/servers_cert.crl"
+nsCertType               = server
+extendedKeyUsage         = serverAuth, nsSGC, msSGC
+nsComment                = "Sci Software, Server Certificate"
+keyUsage                 = digitalSignature, keyEncipherment
+
 [alt_names]
 DNS.1 = "Sci Software Sławomir Cichy, https://scisoftware.pl"
 
