@@ -1,0 +1,144 @@
+###############################################
+# Główny plik konfiguracji dla OpenSSL
+# Pamiętaj o dostosowaniu go do swoich potrzeb
+# https://jamielinux.com/docs/openssl-certificate-authority/appendix/root-configuration-file.html
+###############################################
+
+HOME                     = .
+RANDFILE                 = $ENV::HOME/.rnd
+oid_section              = new_oids
+prompt                   = no
+
+[ new_oids ]
+
+[ ca ]
+default_ca               = SCISOFTWARE_CA				# The default ca section
+
+[ SCISOFTWARE_CA ]
+ca_cert_file			 = ${ENV::CA_CERT_FILE}
+ca_key_file			 	 = ${ENV::CA_KEY_FILE}
+dir                      = ${ENV::CA_DIR}
+new_certs_dir            = ${ENV::OUTPUT_DIR}           # default place for new certs.
+database_dir			 = ${ENV::DATABASE_DIR}
+certificate              = $dir/$ca_cert_file           # The CA certificate
+private_key              = $dir/$ca_key_file      		# The private key
+RANDFILE                 = $database_dir/.rnd           # private random number file
+serial                   = $database_dir/serial         # The current serial number
+database                 = $database_dir/index.txt      # database index file.
+certs                    = $database_dir/certs          # Where the issued certs are kept
+crl_dir                  = $database_dir/crl            # Where the issued crl are kept
+crl                      = $database_dir/crl.pem        # The current CRL
+x509_extensions          = srv_cert                     # The extentions to add to the cert
+default_days             = 1095                         # how long to certify for
+default_crl_days         = 30                           # how long before next CRL
+default_md               = sha256                       # which md to use.
+preserve                 = no                           # keep passed DN ordering
+policy                   = policy_match
+copy_extensions          = copy
+
+[ policy_match ]
+countryName              = supplied
+stateOrProvinceName      = supplied
+organizationName         = match
+organizationalUnitName   = optional
+commonName               = supplied
+emailAddress             = optional
+
+[ policy_anything ]
+countryName              = optional
+stateOrProvinceName      = optional
+localityName             = optional
+organizationName         = optional
+organizationalUnitName   = optional
+commonName               = supplied
+emailAddress             = optional
+
+[ req ]
+default_bits             = 2048
+default_days             = 1095                			# how long to certify for
+default_keyfile          = privkey.pem
+default_md               = sha256
+distinguished_name       = req_distinguished_name
+attributes               = req_attributes
+x509_extensions          = v3_ca               			# The extentions to add to the self signed cert
+req_extensions           = v3_req
+x509_extensions          = srv_cert
+
+[ req_distinguished_name ]
+emailAddress             = info@scisoftware.pl
+countryName              = PL
+stateOrProvinceName      = Pomorskie
+localityName             = Bojano
+0.organizationName       = Sci Software
+0.organizationalUnitName = IT o/Bojano
+commonName               = ${ENV::CN}
+0.DC                     = scisoftware
+1.DC                     = pl
+
+[ req_attributes ]
+
+[ v3_req ]
+basicConstraints         = CA:FALSE
+keyUsage                 = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName           = @alt_names
+nsCertType               = server
+extendedKeyUsage         = serverAuth, nsSGC, msSGC
+nsComment                = "Sci Software - Certificate, domain PL"
+
+[ v3_ca ]
+basicConstraints         = CA:true
+subjectKeyIdentifier     = hash
+authorityKeyIdentifier   = keyid:always,issuer:always
+subjectAltName           = @alt_names
+issuerAltName            = issuer:copy
+
+[ crl_ext ]
+authorityKeyIdentifier   = keyid:always,issuer:always
+
+# Konfiguracja podstawowa dla certyfikatów serwerów
+[ srv_cert ]
+basicConstraints         = CA:FALSE
+subjectKeyIdentifier     = hash
+nsCertType               = sslCA, emailCA
+authorityKeyIdentifier   = keyid,issuer:always
+crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/servers_cert.crl"
+subjectAltName           = @alt_names
+nsCertType               = server
+extendedKeyUsage         = serverAuth, nsSGC, msSGC
+nsComment                = "Sci Software - Server Certificate, domain PL"
+keyUsage                 = digitalSignature, keyEncipherment
+
+# Konfiguracja podstawowa dla certyfikatów użytkowników
+[ usr_cert ]
+basicConstraints         = CA:FALSE
+subjectKeyIdentifier     = hash
+nsCertType               = sslCA, emailCA
+authorityKeyIdentifier   = keyid,issuer:always
+crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/users_cert.crl"
+subjectAltName           = @alt_names
+nsCertType               = client
+extendedKeyUsage         = clientAuth, emailProtection
+nsComment                = "Sci Software - User Certificate, domain PL"
+keyUsage                 = digitalSignature, keyEncipherment
+
+# Konfiguracja podstawowa dla certyfikatów klientów
+[ client_cert ]
+basicConstraints         = CA:FALSE
+subjectKeyIdentifier     = hash
+nsCertType               = sslCA, emailCA
+authorityKeyIdentifier   = keyid,issuer:always
+crlDistributionPoints    = URI:"https://scisoftware.pl/CRL/users_cert.crl"
+subjectAltName           = @alt_names
+nsCertType               = client
+extendedKeyUsage         = clientAuth, emailProtection
+nsComment                = "Sci Software - Client Certificate, domain PL"
+keyUsage                 = digitalSignature, keyEncipherment
+
+[alt_names]
+DNS.1 = scisoftware.pl
+DNS.2 = *.scisoftware.pl
+DNS.3 = hgdb.org
+DNS.4 = *.hgdb.org
+DNS.5 = hgdb.io
+DNS.6 = *.hgdb.io
+
