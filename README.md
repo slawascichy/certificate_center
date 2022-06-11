@@ -1,7 +1,9 @@
 # Centrum Certyfikacyjne
 
 Centrum zarządzania certyfikatami SSL oparte o openssl oraz skrypty bash.
-Zbiór skryptów wspiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie, bezkosztowo, zarządzać certyfikatami SSL naszej wewnętrznej infrastruktury. Popularny projekt [Let's Encrypt](https://letsencrypt.org/) pozwala na darmową obsługę certyfikacji naszych serwerów, lecz jego zastosowanie ma ograniczenie: **nasze usługi muszą być wystawione na świat** - proces walidacji serwera nie pozwala na korzystanie z certyfikatów na serwerach, które nie mają wyjścia na świat.
+Zbiór skryptów wspiera pracę i rejestrację certyfikatów podpisanych samodzielnie. Narzędzie przydatne gdy chcemy skutecznie, bezkosztowo, zarządzać certyfikatami SSL naszej wewnętrznej infrastruktury. 
+
+Popularny projekt [Let's Encrypt](https://letsencrypt.org/) pozwala na darmową obsługę certyfikacji naszych serwerów, lecz jego zastosowanie ma ograniczenie: **nasze usługi muszą być wystawione na świat** - proces walidacji serwera nie pozwala na korzystanie z certyfikatów na serwerach, które nie mają wyjścia na świat. Dlatego posiadanie własnego Centrum Certyfikacyjnego wydaje się dobrym rozwiązaniem.
 
 ## Opis skryptów i plików
 
