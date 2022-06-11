@@ -54,7 +54,7 @@ keytool -importkeystore -deststoretype JCEKS\
  -alias "<nazwa>"
 ```
 
-### OpenLdap - Ładowanie certyfikatów
+### OpenLdap - obsługa certyfikatów
 W pierwszej kolejności powinniśmy mieć dostęp do magazynu (archiwum) PKCS12. Następnie realizujemy kroki:
 
 #### Przygotowanie bazy certyfikatów
