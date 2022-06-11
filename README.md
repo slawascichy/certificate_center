@@ -177,7 +177,7 @@ Enter Export Password:
 ```
 Należy wprowadzić hasło generowanego archiwum PKCS12. Zapamiętaj je by później przekazać odpowiedniej osobie instalującej certyfikaty na serwerze docelowym.
 
-W efekcie końcowym utworzone zostanie archiwum, które należy przekazać osobie instalującej certyfikaty na serwerze docelowym.
+W efekcie końcowym w katalogu `./target` utworzone zostanie archiwum, które należy przekazać osobie instalującej certyfikaty na serwerze docelowym.
 ```
 SUCCESS! Certs are available in archive file wiki.ibpm.pro-certs.tar
 ```
