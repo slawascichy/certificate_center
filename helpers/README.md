@@ -79,7 +79,7 @@ certutil -K -d /etc/openldap/certs -f /etc/openldap/certs/password
 # ustaw uprawnienia:
 chmod a+r /etc/openldap/certs/*.db
 chmod a-r /etc/openldap/certs/password
-chmod u-r /etc/openldap/certs/password
+chmod u+r /etc/openldap/certs/password
 ```
 
 #### Ładowanie certyfikatu do bazy
