@@ -134,7 +134,7 @@ Poszczególne kroki instalacyjne:
 - Wygeneruj swój pierwszy certyfikat ROOT CA za pomocą skryptu `generate_root_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów pośrednich.
 - Wygeneruj swój pierwszy certyfikat pośredni CA za pomocą skryptu `generate_intermediate_ca.sh` - wygenerowany certyfikat będzie służył do podpisywania certyfikatów twoich serwerów. 
     
-Przekaż wygenerowane certyfikaty, ROOT CA oraz certyfikat pośredni, współpracownikom. Jeżeli będą oni mieli je zainstalowane na komputerze w magazynie "Zaufanych głównych urzędów certyfikacji", ich przeglądarki będą tolerować/ufać serwerom, które będą obsługiwane przez twoje Centrum Certyfikacyjne.
+Przekaż wygenerowane certyfikaty, ROOT CA oraz certyfikat pośredni (pliki ***.crt** z katalogu `./cacerts`), współpracownikom. Jeżeli będą oni mieli je zainstalowane na komputerze w magazynie "Zaufanych głównych urzędów certyfikacji", ich przeglądarki będą tolerować/ufać serwerom, które będą obsługiwane przez twoje Centrum Certyfikacyjne.
 ![](helpers/doc-resources/03_openssl_certmgr.png)    
 
 Koniec instalacji.
