@@ -22,16 +22,17 @@ INTER_CA_CERT_FILE=scisoftware_intermediate_ca.crt
 INTER_CA_PKCS12_FILE=scisoftware_intermediate_ca.p12
 
 #CN=$1
+#FRENDLY_NAME=$2
 CN="Sci Software Intermediate CA"
 FRENDLY_NAME="SciSoftwareIntermediateCA"
 export CN FRENDLY_NAME
 
+DAYS=3650 #10 lat
+export DAYS
+
 ROOT_CONF=$CONFIG_DIR/002_root_ca_openssl.cnf
 CA_CONF=$CONFIG_DIR/003_intermediate_ca_openssl.cnf
 export CA_CONF ROOT_CONF
-
-DAYS=3650 #10 lat
-export DAYS
 
 if [ -f "$CA_DIR/$INTER_CA_CERT_FILE" ]
 then

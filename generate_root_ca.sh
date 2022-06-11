@@ -17,15 +17,16 @@ CA_CERT_FILE=scisoftware_root_ca.crt
 CA_PKCS12_FILE=scisoftware_root_ca.p12
 
 #CN=$1
+#FRENDLY_NAME=$2
 CN="Sci Software Root CA"
 FRENDLY_NAME="SciSoftwareRootCA"
 export CN FRENDLY_NAME
 
-CA_CONF=$CONFIG_DIR/002_root_ca_openssl.cnf
-export CA_CONF
-
 DAYS=7300 #20 lata
 export DAYS
+
+CA_CONF=$CONFIG_DIR/002_root_ca_openssl.cnf
+export CA_CONF
 
 if [ -f "$CA_DIR/$CA_CERT_FILE" ]
 then
