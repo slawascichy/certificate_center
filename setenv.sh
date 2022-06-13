@@ -30,6 +30,6 @@ export DAYS
 KEY_SIZE=2048
 export KEY_SIZE
 
-# Główny plik konfiguracyjny. Nazwanu z prefiksem 001 aby był na początku.
+# Główny plik konfiguracyjny służący do podpisywania twoich certyfikatów.
 MAIN_CONF=$CONFIG_DIR/003_intermediate_ca_openssl.cnf
 export MAIN_CONF
