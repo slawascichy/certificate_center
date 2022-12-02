@@ -5,6 +5,9 @@
 
 . ./setenv.sh
 
+MAIN_CONF=$CONFIG_DIR/001_main_openssl.cnf
+export MAIN_CONF
+
 # Nazwę serwera przyjmujemy jako argument. 
 CN=$1
 export CN

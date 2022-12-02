@@ -49,6 +49,7 @@ fi
 openssl req -new -sha256 -x509 -nodes\
  -config $CA_CONF\
  -newkey rsa:$KEY_SIZE\
+ -days $DAYS\
  -keyout "$CA_DIR/$CA_KEY_FILE"\
  -out "$CA_DIR/$CA_CERT_FILE"
  
