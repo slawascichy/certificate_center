@@ -1,2 +1,3 @@
 V	320608143949Z		01	unknown	/C=PL/ST=Pomorskie/O=Sci Software/OU=IT o/Bojano/CN=Sci Software Intermediate CA
 V	250610163708Z		02	unknown	/C=PL/ST=Pomorskie/L=Bojano/O=Sci Software/OU=IT o/Bojano/CN=auth-001.hgdb.org
+V	251221090712Z		03	unknown	/C=PL/ST=Pomorskie/L=Bojano/O=Sci Software/OU=IT o/Bojano/CN=bpmbaw20test.hgdb.org
