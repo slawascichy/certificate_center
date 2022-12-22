@@ -149,7 +149,7 @@ Wymagania co do jakości certyfikatów się zwiększają i przez to wymagana jes
 ```bash
 # Przygotuj nazwę katalogu w zmiennej środowiskowej. Zmienna $CN reprezentuje pełną nazwę 
 # serwera dla którego ma być wygenerowany certyfikat np. *wiki.example.com*
-set CN=wiki.example.com
+export CN=wiki.example.com
 ./init_oputput_dir.sh $CN
 ```
 3. Podczas inicjalizacji w katalogu `./target` zostanie utworzony odpowiedni katalog o nazwie `$CN`, a w katalogu `./config` powinien pojawić się plik z konfiguracją o nazwie `$CN_openssl.cnf` gdzie `$CN` reprezentuje pełną nazwę serwera dla którego ma być wygenerowany certyfikat np. *wiki.example.com_openssl.cnf*. Ta dedykowana powinna być teraz dostosowana do potrzeb serwera. Zmieniamy sekcję `[alt_names]` tak aby ustawić wymagane dla certyfikatu alternatywne nazwy, np.:
